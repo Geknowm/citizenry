@@ -11,24 +11,22 @@ Rails.application.config.middleware.use OmniAuth::Builder do
   end
 
   SETTINGS['auth_credentials'].each do |provider_name, opts|
-    provider  provider_name.to_sym, opts['key'], opts['secret'], ssl_client_options
+    provider provider_name.to_sym, opts['key'], opts['secret'], ssl_client_options
   end
 
+  provider :openid, :store => OpenID::Store::Filesystem.new('/tmp'), :name => 'openid' if SETTINGS['providers'].include?('openid')
 
-
-  provider(:open_id, OpenID::Store::Filesystem.new('/tmp')) if SETTINGS['providers'].include?('open_id')
-
-  use(OmniAuth::Strategies::OpenID, OpenID::Store::Filesystem.new('/tmp'),
+  use(OmniAuth::Strategies::OpenID, :store => OpenID::Store::Filesystem.new('/tmp'),
       :name => 'yahoo',
       :identifier => 'yahoo.com') \
       if SETTINGS['providers'].include?('yahoo')
 
-  use(OmniAuth::Strategies::OpenID, OpenID::Store::Filesystem.new('/tmp'),
+  use(OmniAuth::Strategies::OpenID, :store => OpenID::Store::Filesystem.new('/tmp'),
       :name => 'google',
       :identifier => 'https://www.google.com/accounts/o8/id') \
       if SETTINGS['providers'].include?('google')
 
-  provider :google_apps, OpenID::Store::Filesystem.new('/tmp')
+  provider :google_apps, :store => OpenID::Store::Filesystem.new('/tmp')
 end
 
 

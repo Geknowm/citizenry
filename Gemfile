@@ -23,11 +23,11 @@ gem 'hoptoad_notifier'
 #--[ Utility ]------------------------------------------------------------------
 gem 'httparty', '~> 0.8.0'
 gem "json", "~> 1.6.1"
-gem 'addressable', '~> 2.2.4'
+gem 'addressable', '~> 2.2.4', :require => 'addressable/uri'
 
 #--[ Authentication ]-----------------------------------------------------------
 gem 'devise', "~> 1.4.5"
-gem 'omniauth', "~> 0.2.6"
+gem 'omniauth', "~> 1.1.1"
 
 # Automatic login provider selection
 gem 'redfinger', '~> 0.1.0', :git => "git://github.com/reidab/redfinger.git"
@@ -35,7 +35,15 @@ gem 'ruby-openid', '~> 2.1.8'
 gem 'net-dns', '~> 0.6.1', :require => 'net/dns/resolver'
 
 # Client libraries for authenticated services
+gem 'omniauth-facebook', :github => 'mkdynamic/omniauth-facebook'
+gem 'omniauth-foursquare', :github => 'arunagw/omniauth-foursquare'
+gem 'omniauth-github', :github => 'intridea/omniauth-github'
+gem 'omniauth-google-apps', :github => 'sishen/omniauth-google-apps'
+gem 'omniauth-linkedin', :github =>  'skorks/omniauth-linkedin'
+gem 'omniauth-openid', :github => 'intridea/omniauth-openid'
 gem 'omniauth-twitter', :github => 'arunagw/omniauth-twitter'
+gem 'omniauth-yahoo', :github => 'timbreitkreutz/omniauth-yahoo'
+
 # TODO: Upgrade these to newer versions after omniauth 0.3 upgrade
 # gem 'twitter', '~> 1.6.0'
 # gem 'linkedin', '~> 0.2.2', :git => "git://github.com/pengwynn/linkedin.git", :tag => 'v0.2.2'

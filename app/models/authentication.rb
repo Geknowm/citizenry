@@ -10,7 +10,7 @@ class Authentication < ActiveRecord::Base
   validates_presence_of :user
 
   scope :via, lambda{|provider| where(:provider => provider)}
-  scope :searchable, where("provider = 'twitter' OR provider = 'facebook' OR provider = 'linked_in' OR provider = 'foursquare'")
+  scope :searchable, where("provider = 'twitter' OR provider = 'facebook' OR provider = 'linkedin' OR provider = 'foursquare'")
 
   SETTINGS['providers'].each do |provider|
     scope "via_#{provider.to_sym}", where("provider = ?", provider)
@@ -63,10 +63,10 @@ class Authentication < ActiveRecord::Base
 
   # We only want to retain certain user info from omniauth responses, depending on the provider.
   def extract_info_from_omniauth(omniauth)
-    if omniauth.has_key?('extra') && omniauth['extra'].has_key?('user_hash')
-      self.info = omniauth['user_info'].merge(omniauth['extra']['user_hash']).symbolize_keys
+    if omniauth.has_key?('extra') && omniauth['extra'].has_key?('raw_info')
+      self.info = omniauth['info'].merge(omniauth['extra']['raw_info']).symbolize_keys
     else
-      self.info = omniauth['user_info'].symbolize_keys
+      self.info = omniauth['info'].symbolize_keys
     end
   end
 
