@@ -4,13 +4,16 @@ gem 'rails', '3.1.0'
 gem 'rake', :require => false
 gem 'rails-i18n'
 
+# Decide whether to use MySQL or PostgreSQL. Note that PostgreSQL is the default on Heroku.
+# Leave only 'mysql' or 'pg' uncommented. ('sqlite' will not work well in production)
+gem 'pg'
 # You may need to add the following to your .bash_profile (or
 # similar):
 #
 #     export DYLD_LIBRARY_PATH="/usr/local/mysql/lib:$DYLD_LIBRARY_PATH"
 #
 # Note: the exact path to your MySQL lib/ directory may vary.
-gem 'mysql2', '~> 0.3.2'
+# gem 'mysql2', '~> 0.3.2'
 # Uncomment if you're using sqlite
 # gem 'sqlite3-ruby', :require => 'sqlite3'
 
@@ -32,15 +35,18 @@ gem 'ruby-openid', '~> 2.1.8'
 gem 'net-dns', '~> 0.6.1', :require => 'net/dns/resolver'
 
 # Client libraries for authenticated services
+gem 'omniauth-twitter', :github => 'arunagw/omniauth-twitter'
 # TODO: Upgrade these to newer versions after omniauth 0.3 upgrade
-gem 'twitter', '~> 1.6.0'
-gem 'linkedin', '~> 0.2.2', :git => "git://github.com/pengwynn/linkedin.git", :tag => 'v0.2.2'
-gem 'mogli', '~>0.0.25', :git => "git://github.com/reidab/mogli.git" # facebook
-gem 'foursquare2', '~>1.1.0'   # https://gist.github.com/419219 <- github oauth docs!
+# gem 'twitter', '~> 1.6.0'
+# gem 'linkedin', '~> 0.2.2', :git => "git://github.com/pengwynn/linkedin.git", :tag => 'v0.2.2'
+# gem 'mogli', '~>0.0.25', :git => "git://github.com/reidab/mogli.git" # facebook
+# gem 'foursquare2', '~>1.1.0'   # https://gist.github.com/419219 <- github oauth docs!
 
 #--[ Search ]-------------------------------------------------------------------
-# If you're using the default sql-based search, you can comment this out.
-gem 'thinking-sphinx', '~> 2.0.1', :require => 'thinking_sphinx'
+# If you're using the default sql-based search, you can leave this commented this out.
+# If you want a more robust full text search, uncomment. Note that using on Heroku
+# would cost $12/month with https://addons.heroku.com/flying_sphinx
+# gem 'thinking-sphinx', '~> 2.0.1', :require => 'thinking_sphinx'
 
 #--[ Model ]--------------------------------------------------------------------
 gem "paperclip", "~> 2.3"
